@@ -1,0 +1,1 @@
+ionic-shift2 is very simple API client that connects to my own rails API running on localhost:3000 (called "r-shift1" )
