@@ -8,7 +8,7 @@ angular.module('shiftStarter')
  
   $scope.login = function() {
     AuthService.login($scope.user).then(function(msg) {
-      $state.go('slots');
+      $state.go('shifts');
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
@@ -18,7 +18,7 @@ angular.module('shiftStarter')
   };
 })
  
-.controller('RegisterCtrl', function($scope, AuthService, $ionicPopup, $state) {
+.controller('StaticCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
     name: '',
     password: ''
@@ -40,26 +40,26 @@ angular.module('shiftStarter')
   };
 })
  
-.controller('SlotCtrl', function($scope, AuthService, $ionicPopup, API_ENDPOINT, $http, $state) {
+.controller('ShiftCtrl', function($scope, AuthService, $ionicPopup, API_ENDPOINT, $http, $state) {
 
   $scope.destroySession = function() {
     AuthService.logout();
   };
  
-  $scope.getSlots = function() {
-    getSlots();
+  $scope.getShifts = function() {
+    getShifts();
   };
 
   $scope.toggleAssignment = function(id) {
-    $http.put(API_ENDPOINT.url + '/slots/' + id + '/assign')
+    $http.put(API_ENDPOINT.url + '/shifts/' + id + '/assign')
     .success(function(response, status) {
-      getSlots();
+      getShifts();
     })
     .error(function(data, status, headers, config) {
       console.log(status);
       var alertPopup = $ionicPopup.alert({
         title: 'Assignment failed!',
-        template: 'Unable to assign this slot.'
+        template: 'Unable to assign this shift.'
       });
     });
   };
@@ -69,13 +69,13 @@ angular.module('shiftStarter')
     $state.go('outside.login');
   };
 
-  getSlots = function() {
-    $http.get(API_ENDPOINT.url + '/slots').then(function(result) {
-      $scope.slots = result.data;
+  getShifts = function() {
+    $http.get(API_ENDPOINT.url + '/shifts').then(function(result) {
+      $scope.shifts = result.data;
     });
   };
 
-  getSlots();
+  getShifts();
 
 })
  

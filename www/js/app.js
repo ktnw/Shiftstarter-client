@@ -11,22 +11,22 @@ angular.module('shiftStarter', ['ionic'])
   .state('outside', {
     url: '/outside',
     abstract: true,
-    templateUrl: 'outside.html'
+    templateUrl: 'templates/outside.html'
   })
   .state('outside.login', {
     url: '/login',
-    templateUrl: 'login.html',
+    templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
-  .state('outside.register', {
-    url: '/register',
-    templateUrl: 'register.html',
-    controller: 'RegisterCtrl'
+  .state('outside.howto', {
+    url: '/howto',
+    templateUrl: 'templates/static/howto.html',
+    controller: 'StaticCtrl'
   })
-  .state('slots', {
-    url: '/slots',
-    templateUrl: 'slots.html',
-    controller: 'SlotCtrl'
+  .state('shifts', {
+    url: '/shifts',
+    templateUrl: 'templates/shifts.html',
+    controller: 'ShiftCtrl'
   })
  
   $urlRouterProvider.otherwise('/outside/login');
@@ -55,7 +55,7 @@ angular.module('shiftStarter', ['ionic'])
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
     if (!AuthService.isAuthenticated()) {
       console.log(next.name);
-      if (next.name !== 'outside.login' && next.name !== 'outside.register') {
+      if (next.name !== 'outside.login' && next.name !== 'outside.howto') {
         event.preventDefault();
         $state.go('outside.login');
       }
