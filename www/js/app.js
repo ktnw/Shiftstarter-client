@@ -21,14 +21,32 @@ angular.module('shiftStarter', ['ionic'])
   .state('outside.howto', {
     url: '/howto',
     templateUrl: 'templates/static/howto.html',
-    controller: 'StaticCtrl'
+    //controller: 'StaticCtrl'
   })
-  .state('shifts', {
+  .state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
+  })
+  .state('tab.shifts', {
     url: '/shifts',
-    templateUrl: 'templates/shifts.html',
-    controller: 'ShiftCtrl'
+    views: {
+      'tab-shifts': {
+        templateUrl: 'templates/shifts.html',
+        controller: 'ShiftCtrl'
+      }
+    }
   })
- 
+  .state('tab.profile', {
+    url: '/profile',
+    views: {
+      'tab-profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
+
   $urlRouterProvider.otherwise('/outside/login');
 })
 

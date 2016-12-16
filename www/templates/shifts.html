@@ -1,11 +1,10 @@
-<ion-view>
+<ion-view title="Manage Shifts">
   <ion-header-bar align-title="center" class="bar-positive">
     <h1 class="title">ShiftStarter</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="logout()">Logout</button>
-    </div>
   </ion-header-bar>
-    <ion-content class="has-header">
+
+    <ion-content class="padding">
+      <ion-toggle ng-model="manageMode" ng-change="toggleMode()" toggle-class="toggle">Manage Shifts</ion-toggle>
       <ion-list can-swipe="true">
         <ion-item ng-repeat="shift in shifts">
           <h2>{{shift.type}}</h2>
@@ -16,8 +15,5 @@
             </ion-option-button>
         </ion-item>
       </ion-list>
-      <button class="button button-full button-assertive" ng-click="destroySession()">
-        Destroy token
-      </button>
     </ion-content>
 </ion-view>
