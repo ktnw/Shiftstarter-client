@@ -5,6 +5,6 @@ angular.module('shiftStarter')
 })
  
 .constant('API_ENDPOINT', {
-  url: 'http://127.0.0.1:3000/api/v1'
-  //  For a simulator use: url: 'http://127.0.0.1:3000/api/v1'
+  url: 'http://127.0.0.1:3000/api/v1'   // Dev/Test
+  // url: 'https://frozen-beyond-71174.herokuapp.com/api/v1'   // Sit
 });
